@@ -5,11 +5,15 @@ const createNotEnumerableProperty = (propName) => {
 	var notNumber = Symbol(propName);
 	return notNumber;
 };
-const createProtoMagicObject = () => {return Function};
+const createProtoMagicObject = () => {
+	var magicFunction = function() {};
+	magicFunction.__proto__ = new Function();
+	magicFunction.prototype = magicFunction.__proto__;
+	return magicFunction;
+};
 var count = 0;
 const incrementor = () => {
 	count++;
-	// чтото написал
  	return incrementor;
 };
 const asyncIncrementor = () => {};
@@ -20,7 +24,12 @@ const returnBackInSecond = () => {};
 const getDeepPropertiesCount = () => {};
 const createSerializedObject = () => { return null};
 const toBuffer = () => {};
-const sortByProto = () => {};
+const sortByProto = (arr) => {
+	arr.sort((a, b) => {
+		return a.__proto__ - b.__proto__;
+	} )
+	return arr;
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
