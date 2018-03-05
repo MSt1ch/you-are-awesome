@@ -1,6 +1,6 @@
 // DO WHATEVER YOU WANT HERE
 
-const createEnumerableProperty = (propertyName) => { return {propertyName: 'value'}};
+const createEnumerableProperty = () => {};
 const createNotEnumerableProperty = (propName) => {
 	var notNumber = Symbol(propName);
 	return notNumber;
